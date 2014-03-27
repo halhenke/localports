@@ -1,0 +1,46 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem 			1.0
+
+
+
+
+
+name				zbar
+version				0.10
+homepage			http://zbar.sourceforge.net/
+categories			graphics devel
+maintainers			halhenke \
+					gmail.com:halhenke
+license				GNU LPGL 2.1
+platforms			darwin
+
+description 		For reading bar codes from various sources
+
+long_description	ZBar is an open source software suite for \
+					reading bar codes from various sources, such as video \
+					streams, image files and raw intensity sensors. \
+					It supports many popular symbologies (types of bar codes) \
+					including EAN-13/UPC-A, UPC-E, EAN-8, Code 128, Code 39, \
+					Interleaved 2 of 5 and QR Code.
+
+master_sites		http://zbar.sourceforge.net/download.html \
+					# http://sourceforge.net/projects/zbar/files/zbar/0.10/zbar-0.10.tar.bz2/download \
+					# http://sourceforge.net/projects/zbar/files/zbar/ \
+					# http://sourceforge.net/projects/zbar/files/latest/download \
+
+checksums			rmd160 	a68db3e81d596a506e50e797c3540a05b8b84a9f \
+					sha256 	234efb39dbbe5cef4189cc76f37afbe3cfcfb45ae52493bfe8e191318bdbadc6	
+
+depends_lib			port:ImageMagick \
+					port:ufraw
+
+configure.args		--disable-dependency-tracking \
+					--prefix=${prefix} \
+					--without-python \
+					--without-qt \
+					--disable-video \
+					--without-gtk
+
+patchfiles			patch-zbar-jpeg.c.diff														
